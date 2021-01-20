@@ -1,4 +1,10 @@
 import express from "express";
+import morgan from "morgan";
+import helmet from "helmet"
+import bodyParser from "body-parser";
+import cookieParser from "cookieParser";
+
+
 const app = express() 
 
 const PORT = 4000
@@ -8,12 +14,16 @@ console.log(`Listening on : http://localhost:${PORT}`);
 
 const handleHome = (req, res) => res.send("Hi from home! dobedh");
 
-
 const handleProfile = (req, res) => res.send("You are seeing my profile");
 
-app.get("/", handleHome) 
-app.get("/profile", handleProfile)
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(helmet());
+app.use(morgan("dev"));
 
+app.get("/", handleHome); 
 
+app.get("/profile", handleProfile);
 
 app.listen(PORT, handleListening);
