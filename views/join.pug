@@ -1,4 +1,10 @@
 extends layouts/main
 
 block content
-    p join us!
+    .form__container
+        form(action=routes.login, method="post")
+            input(type="email", name="email", placeholder="Email")
+            input(type="email", name="email2", placeholder="Verify Email")
+            input(type="password", name="password", placeholder="Password")
+            input(type="submit", name="joinBtn", value="Join now")
+        include ./partials/socialLogin

@@ -1,6 +1,10 @@
 header.header
     .header_column
-        i.fab.fa-youtube
+        a(href=routes.home)
+            i.fab.fa-youtube
+    .header_column
+        form(action=routes.search, method="get")
+            input(type="text", placeholder="search by term.." name="term")
     .header_column
         ul 
             li
