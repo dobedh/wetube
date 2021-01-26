@@ -10,7 +10,7 @@ const SEARCH = "/search"
 const USERS = "/users"
 const USERS_DETAIL = "/:id"
 const EDIT_PROFILE = "/edit-profile"
-const CHANGE_PASSWORD = "/chage-password"
+const CHANGE_PASSWORD = "/change-password"
 
 //videos
 const VIDEOS = "/videos";

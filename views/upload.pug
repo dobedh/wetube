@@ -1,4 +1,11 @@
 extends layouts/main
 
 block content
-    p Upload your videos
+    .form-container
+        form.upload(action=`/videos${routes.upload}`, method="post")
+            label(for="upload") Video Upload
+            input(type="file", id="upload", name="upload")
+            input(type="text", placeholder="Title", name="title")
+            textarea(name="textarea", cols="30", rows="5", placeholder="description")
+            input(type="submit", value="Upload Video")
+        a.fomr-contatiner__link(href=routes.changePassword) Change Password
