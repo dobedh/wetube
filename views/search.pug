@@ -1,4 +1,14 @@
 extends layouts/main
+include mixins/videoBlock
 
 block content
-    h3 Search for : #{searchingBy}
+    .search__header
+        h3 Search for : #{searchingBy}
+    .search__videos
+        // To-do : show/filter the exact videos the user searched
+        each item in videos
+            +videoBlock( {
+                title: item.title,
+                views: item.description,
+                videoFile: item.videoFile
+            })
