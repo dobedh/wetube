@@ -1,5 +1,7 @@
-import { join, login } from "./controllers/userController"
+import multer from "multer";
 import routes from "./routes";
+
+const multerVideo = multer({dest : "uploads/videos/"});
 
 export const localMiddelware = (req, res, next) => {
     res.locals.siteName = "Wetube";
@@ -10,3 +12,5 @@ export const localMiddelware = (req, res, next) => {
     }
     next()
 }
+
+export const uploadVideo = multerVideo.single("videoFile");

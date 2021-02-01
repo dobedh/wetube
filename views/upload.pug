@@ -2,10 +2,10 @@ extends layouts/main
 
 block content
     .form-container
-        form.upload(action=`/videos${routes.upload}`, method="post")
+        form.upload(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
             label(for="upload") Video Upload
-            input(type="file", id="upload", name="upload", required=true)
+            input(type="file", id="upload", name="videoFile", required=true, accept="video/*")
             input(type="text", placeholder="Title", name="title", required=true)
-            textarea(name="textarea", cols="30", rows="5", placeholder="description", required=true)
+            textarea(name="description", cols="30", rows="5", placeholder="description", required=true)
             input(type="submit", value="Upload Video")
         a.fomr-contatiner__link(href=routes.changePassword) Change Password
