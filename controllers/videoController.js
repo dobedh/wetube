@@ -1,5 +1,4 @@
 import "../db";
-import escapeStringRegexp from "escape-string-regexp";
 import routes from "../routes";
 import Video from "../models/Video";
 
@@ -16,10 +15,13 @@ export const search = async (req, res) => {
   const {
     query: { term: searchingBy },
   } = req;
-  const $regex = escapeStringRegexp(searchingBy);
+  let videos = [];
   try {
-    const videos = await Video.find({
-      $or: [({ title: { $regex } }, { description: { $regex } })],
+    videos = await Video.find({
+      $or: [
+        { title: { $regex: searchingBy, $options: "i" } },
+        { description: { $regex: searchingBy, $options: "i" } },
+      ],
     });
     res.render("search", {
       pageTitle: `Search ${videos.title}`,
