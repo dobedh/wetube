@@ -4,6 +4,7 @@ import {
   editProfile,
   userDetail,
   users,
+  getMe,
 } from "../controllers/userController";
 import { onlyPrivate } from "../localMiddleware";
 import routes from "../routes";
