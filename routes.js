@@ -23,6 +23,10 @@ const EDIT_VIDEO = "/:id/edit";
 const GITHUB = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
 
+//Facbeook
+const FB = "/auth/facebook";
+const FB_CALLBACK = "auth/facebook/callback";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -65,6 +69,8 @@ const routes = {
   gitHub: GITHUB,
   gitHubCallback: GITHUB_CALLBACK,
   me: ME,
+  facebook: FB,
+  facebookCallback: FB_CALLBACK,
 };
 
 export default routes;

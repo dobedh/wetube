@@ -7,7 +7,7 @@ header.header
             input(type="text", placeholder="search by term.." name="term")
     .header__column
         ul 
-            if !user
+            if !loggedUser
                 li
                     a(href=routes.join) join
                 li
