@@ -46,14 +46,14 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      user.github_id = id;
+      user.githubId = id;
       return cb(null, user);
     }
     const newUser = await User.create({
       name,
       email,
       avatarUrl: avatar_url,
-      github_id: id,
+      githubIdd: id,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -82,41 +82,31 @@ export const postFacebookLogin = (req, res) => {
 
 export const kakaoLogin = passport.authenticate("kakao");
 
-export const kakaoLoginCallback = async (_, __, profile, done) => {
+export const kakaoLoginCallback = async (_, __, profile, cb) => {
   const {
-    _json: { id, kakao_account, username, email },
+    id,
+    username: name,
+    _json: { properties: profile_image, kakao_account: email },
   } = profile;
   try {
-    const user = await User.findOne({});
+    const user = await User.findOne({ email });
     if (user) {
-      user.kakao_id = id;
-      return done(null, user);
+      user.kakaoId = id;
+      return cb(null, user);
     }
     const newUser = await User.create({
-      username,
-      kakao_account,
+      name,
       email,
-      kakao_id: id,
+      avatarUrl: profile_image,
+      kakaoId: id,
     });
-    return done(null, newUser);
+    return cb(null, newUser);
   } catch (error) {
-    return done(error);
+    return cb(error);
   }
 };
 
-export const postKakaoLogin = (req, res) => {
-  res.redirect(routes.home);
-};
-
-export const logout = (req, res) => {
-  req.logout();
-  res.redirect(routes.home);
-};
-
 export const users = (req, res) => res.render("users", { pageTitle: "users" });
-
-export const getMe = (req, res) =>
-  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 
 export const userDetail = async (req, res) => {
   try {
